@@ -1,0 +1,54 @@
+<app-header></app-header>
+
+<section class="py-2">
+    <div *ngIf="allProducts.length==0" class="d-flex justify-content-center align-items-center w-100 flex-column">
+        <img src="https://cdni.iconscout.com/illustration/free/thumb/free-empty-cart-4085814-3385483.png" alt="">
+        <h1 class="text-center text-danger">Your Cart is Empty!!!</h1>
+    </div>
+    <div *ngIf="allProducts.length!==0" class="container px-4 px-lg-5 mt-5">
+        <h1 class="text-primary">Your Cart</h1>
+        <div class="row mt-5">
+            <div class="col-lg-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Product</th>
+                            <th>Image</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>...</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of allProducts;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{product.title.slice(0,20)}}...</td>
+                            <td><img width="60px" height="60px" [src]="product.image" alt=""></td>
+                            <td>
+                                <div class="d-flex">
+                                    <button (click)="decrementQuantity(product._id)" class="btn fw-bolder">-</button>
+                                    <input style="width: 60px;" [value]="product.quantity" type="text"
+                                        class="form-control" readonly>
+                                    <button (click)="incrementQuantity(product._id)" class="btn fw-bolder">+</button>
+                                </div>
+                            </td>
+                            <td>{{product.totalPrice}}</td>
+                            <td>
+                                <button (click)="deleteItem(product._id)" class="btn"><i
+                                        class="fa-solid fa-trash text-danger"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="float-end mt-2">
+                    <button (click)="emptyCart()" class="btn btn-danger">EMPTY CART</button>
+                    <button routerLink="" class="btn btn-success ms-3">SHOP MORE</button>
+                </div>
+            </div>
+            <div class="col-lg-4">
+
+            </div>
+        </div>
+    </div>
+</section>

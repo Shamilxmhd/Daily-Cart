@@ -1,0 +1,32 @@
+<app-header></app-header>
+
+<div style="height: 100vh;" class="w-100 d-flex flex-column justify-content-center align-items-center">
+    <div class="row border shadow rounded w-75">
+        <div class="col-lg-6 ">
+            <div style="height: 100%;" class="d-flex align-items-center justify-content-center flex-column ms-5">
+                <h1>Welcome User!!!</h1>
+                <form [formGroup]="loginForm" class="container">
+                    <div class="form-floating mb-3">
+                        <input name="email" formControlName="email" type="email" class="form-control" id="floatingInput"
+                            placeholder="name@example">
+                        <label for="floatingInput">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input name="password" formControlName="password" type="password" class="form-control"
+                            id="floatingPassword" placeholder="password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <div class="mt-3">
+                        <button (click)="login()" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+                <p>New User?Click here to <a routerLink="/register">Register</a> </p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img class="img-fluid ms-5"
+                src="https://img.freepik.com/free-vector/sign-page-abstract-concept-illustration_335657-3875.jpg?size=338&ext=jpg&ga=GA1.1.1700460183.1709424000&semt=sph"
+                alt="">
+        </div>
+    </div>
+</div>
