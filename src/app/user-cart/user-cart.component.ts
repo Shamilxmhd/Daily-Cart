@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-cart',
@@ -7,9 +8,11 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./user-cart.component.css']
 })
 export class UserCartComponent implements OnInit {
-
+  coupenClickStatus: boolean = false
+  cartTotalPrice: number = 0
+  couponStatus: boolean = false
   allProducts: any = []
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     if (sessionStorage.getItem('token')) {
@@ -22,7 +25,7 @@ export class UserCartComponent implements OnInit {
       next: (res: any) => {
         this.allProducts = res
         console.log(this.allProducts);
-
+        this.getCardTotal()
       },
       error: (reason: any) => {
         console.log(reason);
@@ -36,6 +39,7 @@ export class UserCartComponent implements OnInit {
       next: (res: any) => {
         this.getCart()
         this.api.getCardCount()
+        this.getCardTotal()
       },
       error: (reason: any) => {
         console.log(reason.error);
@@ -48,6 +52,7 @@ export class UserCartComponent implements OnInit {
       next: (res: any) => {
         this.getCart()
         this.api.getCardCount()
+        this.getCardTotal()
       },
       error: (reason: any) => {
         console.log(reason.error);
@@ -60,6 +65,7 @@ export class UserCartComponent implements OnInit {
       next: (res: any) => {
         this.getCart()
         this.api.getCardCount()
+        this.getCardTotal()
       },
       error: (reason: any) => {
         console.log(reason.error);
@@ -67,16 +73,48 @@ export class UserCartComponent implements OnInit {
     })
   }
 
-  emptyCart(){
+  emptyCart() {
     this.api.emptyCartAPI().subscribe({
       next: (res: any) => {
         this.getCart()
         this.api.getCardCount()
+        this.getCardTotal()
       },
       error: (reason: any) => {
         console.log(reason.error);
       }
     })
+  }
+
+  getCardTotal() {
+    this.cartTotalPrice = Math.ceil(this.allProducts.map((product: any) => product.totalPrice).reduce(((p1: any, p2: any) => p1 + p2)))
+  }
+
+
+  getCoupon() {
+    this.couponStatus = true
+  }
+
+  discount50() {
+    this.coupenClickStatus = true
+    let discount = Math.ceil(this.cartTotalPrice * 0.5)
+    this.cartTotalPrice -= discount
+  }
+
+  discount25() {
+    this.coupenClickStatus = true
+    let discount = Math.ceil(this.cartTotalPrice * 0.2)
+    this.cartTotalPrice -= discount
+  }
+  discount10() {
+    this.coupenClickStatus = true
+    let discount = Math.ceil(this.cartTotalPrice * 0.1)
+    this.cartTotalPrice -= discount
+  }
+
+  checkout() {
+    sessionStorage.setItem('cartTotalPrice', JSON.stringify(this.cartTotalPrice))
+    this.router.navigateByUrl('/checkout')
   }
 
 }

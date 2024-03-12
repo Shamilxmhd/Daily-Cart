@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ToastrModule } from 'ngx-toastr';
     AllProductsComponent,
     ViewProductComponent,
     WishlistComponent,
-    UserCartComponent
+    UserCartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

@@ -47,7 +47,33 @@
                 </div>
             </div>
             <div class="col-lg-4">
-
+                <div class="border rounded p-3">
+                    <h3>Total : <span class="text-danger">${{cartTotalPrice}}</span></h3>
+                    <h6 *ngIf="!couponStatus" (click)="getCoupon()" class="mt-3">Click here to view<span
+                            class="btn btn-link text-primary"><i class="fa-solid fa-tag"></i>Offers</span></h6>
+                    <!-- gift coupons -->
+                    <div *ngIf="couponStatus" class="d-flex justify-content-evently mt-3">
+                        <ng-container *ngIf="cartTotalPrice>=50 && cartTotalPrice<=250  && !coupenClickStatus">
+                            <img (click)="discount10()" width="250px" height="100px"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSISr5z8z5UcLFfFb1nqnRNSgzfWw18qnnJF9GLowYbDbCqMtMY9LlNT6_OQYKoJV47AAM&usqp=CAU"
+                                alt="">
+                        </ng-container>
+                        <ng-container *ngIf="cartTotalPrice>=250 && cartTotalPrice<=500  && !coupenClickStatus">
+                            <img (click)="discount25()" width="250px" height="100px"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq4r8SLd8pfKYyJYmdmo9EWiEkW6T_vFRqWg&usqp=CAU"
+                                alt="">
+                        </ng-container>
+                        <ng-container *ngIf="cartTotalPrice>500 && !coupenClickStatus">
+                            <img (click)="discount50()" width="250px" height="100px"
+                                src="https://png.pngtree.com/png-clipart/20210415/ourmid/pngtree-horizontal-blue-bar-code-discount-coupon-promotion-png-image_3225054.jpg"
+                                alt="">
+                        </ng-container>
+                    </div>
+                    <hr class="mt-3">
+                    <div class="d-grid">
+                        <button (click)="checkout()" class="btn btn-success">Check Out</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

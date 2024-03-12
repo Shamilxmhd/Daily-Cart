@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { UserCartComponent } from './user-cart/user-cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', component: AllProductsComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'cart', component: UserCartComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '**', redirectTo: '' }
 ];
 
