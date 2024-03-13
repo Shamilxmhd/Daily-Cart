@@ -10,7 +10,7 @@ export class ApiService {
   cartCount = new BehaviorSubject(0)
   wishlistCount = new BehaviorSubject(0)
 
-  SERVER_URL = "http://localhost:3000"
+  SERVER_URL = "https://dailly-cart-backend.onrender.com"
   constructor(private http: HttpClient) {
     if (sessionStorage.getItem('token')) {
       this.getWishlistCount()
