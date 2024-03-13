@@ -35,7 +35,9 @@
 <section class="py-2">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div *ngFor="let Product of allProducts" class="col mb-5">
+            <div *ngIf="(allProducts | search:searchKey).length==0" class="text-danger text-center mb-5 fs-1 w-100">
+                Product Not Found!!!</div>
+            <div *ngFor="let Product of allProducts | search:searchKey" class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
                     <img width="200px" height="250px" routerLink="/view/{{Product.id}}" style="cursor: pointer;"

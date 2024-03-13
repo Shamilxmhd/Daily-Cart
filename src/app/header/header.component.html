@@ -7,9 +7,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <input style="width: 400px;" class="form-control me-2" type="search" aria-label="search"
+                <li class="nav-item ">
+                    <input (keyup)="getSearchTerm($event)" style="width: 400px;" class="form-control me-2" type="search" aria-label="search"
                         placeholder="Search by Product Name">
+                  
                 </li>
                 <li class="nav-item">
                     <button routerLink="wishlist" class="btn btn-outline-dark" type="submit"><i
@@ -26,7 +27,7 @@
                 </li>
                 <li *ngIf="loginUsername" class="nav-item">
                     <i class="fa-solid fa-user me-1"></i> {{loginUsername}}
-                    <button class="btn btn-danger">Logout</button>
+                    <button (click)="logout()" class="btn btn-danger">Logout</button>
                 </li>
             </ul>
         </div>

@@ -37,8 +37,9 @@
             <h4>{{checkoutForm.value.name}}</h4>
             <h4>{{checkoutForm.value.address}}</h4>
             <h4>{{checkoutForm.value.pincode}}</h4>
+            <h4 class="text-danger">Total Amount : ${{totalAmount}}</h4>
             <div class="payment mt-5">
-                payment
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
             </div>
 
 

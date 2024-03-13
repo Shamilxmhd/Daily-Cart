@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-
+  searchTerm = new BehaviorSubject('')
   cartCount = new BehaviorSubject(0)
   wishlistCount = new BehaviorSubject(0)
 
@@ -92,6 +92,9 @@ export class ApiService {
     return this.http.delete(`${this.SERVER_URL}/empty-cart`, this.appendTokenToHeader())
   }
 
+  isLoggedin() {
+    return !!sessionStorage.getItem('token')
+  }
 
 }
 
